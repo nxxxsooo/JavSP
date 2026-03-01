@@ -23,7 +23,8 @@ logger = logging.getLogger(__name__)
 
 
 def _get_metatube_url():
-    """Get MetaTube server URL from config or environment."""
+    """Get MetaTube server URL from config, environment, or default."""
+    # 1. Config file
     try:
         from javsp.config import Cfg
 
@@ -32,10 +33,12 @@ def _get_metatube_url():
             return str(url).rstrip("/")
     except Exception:
         pass
+    # 2. Environment variable
     env_url = os.environ.get("METATUBE_URL")
     if env_url:
         return env_url.rstrip("/")
-    return None
+    # 3. Default (embedded server in Docker)
+    return "http://localhost:8080"
 
 
 def _get_headers():
