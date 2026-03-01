@@ -38,6 +38,7 @@ class CrawlerID(str, Enum):
     prestige = 'prestige'
     arzon = 'arzon'
     arzon_iv = 'arzon_iv'
+    metatube = 'metatube'
 
 class Network(BaseConfig):
     proxy_server: Url | None
@@ -47,6 +48,7 @@ class Network(BaseConfig):
     # DMM Affiliate API credentials (optional, for plot/synopsis scraping)
     dmm_api_id: str | None = None
     dmm_affiliate_id: str | None = None
+    metatube_url: Url | None = None
 
 class CrawlerSelect(BaseConfig):
     def items(self) -> List[tuple[str, list[CrawlerID]]]:

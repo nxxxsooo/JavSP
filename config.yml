@@ -41,13 +41,17 @@ network:
   # Set via config or environment variables: DMM_API_ID, DMM_AFFILIATE_ID
   dmm_api_id: null
   dmm_affiliate_id: null
+  # MetaTube server URL (optional, local metadata server with 20+ sources)
+  # Run MetaTube via Docker: ghcr.io/metatube-community/metatube-server:latest
+  # Set via config or environment variable: METATUBE_URL
+  metatube_url: null
 
 ################################
 crawler:
   # 要使用的爬虫列表（汇总数据时从前到后进行）
-  # airav avsox avwiki fanza fc2 fc2fan javbus javdb javlib javmenu jav321 mgstage prestige arzon arzon_iv
+  # airav avsox avwiki fanza fc2 fc2fan javbus javdb javlib javmenu jav321 mgstage prestige arzon arzon_iv metatube
   selection:
-    normal: [fanza, avsox, javbus, javdb, javlib, jav321, mgstage, prestige]
+    normal: [metatube, fanza, avsox, javbus, javdb, javlib, jav321, mgstage, prestige]
     fc2: [fc2, avsox, javdb, javmenu, fc2ppvdb]
     cid: [fanza]
     getchu: [dl_getchu]
