@@ -44,6 +44,9 @@ class Network(BaseConfig):
     retry: NonNegativeInt = 3
     timeout: Duration
     proxy_free: Dict[CrawlerID, Url]
+    # DMM Affiliate API credentials (optional, for plot/synopsis scraping)
+    dmm_api_id: str | None = None
+    dmm_affiliate_id: str | None = None
 
 class CrawlerSelect(BaseConfig):
     def items(self) -> List[tuple[str, list[CrawlerID]]]:

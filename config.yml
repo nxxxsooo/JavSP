@@ -36,6 +36,11 @@ network:
   retry: 3
   # https://en.wikipedia.org/wiki/ISO_8601#Durations
   timeout: PT10S
+  # DMM Affiliate API credentials (optional, for fetching plot/synopsis from FANZA)
+  # Register for free at https://affiliate.dmm.com/
+  # Set via config or environment variables: DMM_API_ID, DMM_AFFILIATE_ID
+  dmm_api_id: null
+  dmm_affiliate_id: null
 
 ################################
 crawler:

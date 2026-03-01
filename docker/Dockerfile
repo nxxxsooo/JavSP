@@ -20,7 +20,18 @@ FROM python:3.12-slim as runner
 
 WORKDIR /app
 
-COPY --from=builder /app/ /app/
+# Install gosu for running as arbitrary uid/gid (Unraid compatibility)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gosu && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/app/.venv/bin/javsp"]
+COPY --from=builder /app/ /app/
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Default uid/gid for Unraid (nobody:users = 99:100)
+ENV PUID=99
+ENV PGID=100
+
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["-i", "/video"]
